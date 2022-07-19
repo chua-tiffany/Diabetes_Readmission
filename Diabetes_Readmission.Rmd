@@ -144,3 +144,25 @@ Other column notes:
   * $payer_code
   * $medical_specialty (maybe?)
 
+## Initial Read
+
+```{r Row & Column Count}
+ncol(dataset)
+nrow(dataset)
+```
+
+```{r Initial Structure}
+str(dataset)
+```
+
+Because encounter_id and patient_nbr do not provide new information, I will remove these two columns.
+```{r Remove Unnecessary Columns 1}
+#Because encounter_id and patient_nbr do not provide new information, I will remove these two columns.
+dataset1 <- select(dataset,
+                   -encounter_id)
+dataset1 <- select(dataset1,
+                   -patient_nbr)
+
+str(dataset1)
+```
+
