@@ -559,3 +559,82 @@ ggplot(dataset3,
 ```
 * The age bar graph show that more patients older than 60 were readmitted, though it is important to note that there are a greater number of patients older than 60 in the sample.
 
+### Histograms
+
+```{r}
+str(dataset3)
+summary(dataset3)
+```
+
+#### Histograms grouped by readmission status
+```{r Histogram 1}
+# Grouped
+# p <- data %>%
+#   ggplot( aes(x=value, fill=type)) +
+#     geom_histogram( color="#e9ecef", alpha=0.6, position = 'identity') +
+#     scale_fill_manual(values=c("#69b3a2", "#404080")) +
+#     theme_ipsum() +
+#     labs(fill="")
+
+#time_in_hospital
+hosp_hist <- dataset3 %>%
+  ggplot(aes(x = time_in_hospital,
+             fill = readmitted)) + 
+  geom_histogram(binwidth = 1)
+hosp_hist
+
+#num_lab_procedures
+lab_p_hist <- dataset3 %>%
+  ggplot(aes(x = num_lab_procedures,
+             fill = readmitted)) + 
+  geom_histogram(binwidth = 5)
+lab_p_hist
+
+#num_procedures
+procedures_hist <- dataset3 %>%
+  ggplot(aes(x = num_procedures,
+             fill = readmitted)) + 
+  geom_histogram(binwidth = 1)
+procedures_hist
+
+#num_medications
+medications_hist <- dataset3 %>%
+  ggplot(aes(x = num_medications,
+             fill = readmitted)) + 
+  geom_histogram(binwidth = 1)
+medications_hist
+
+#number_outpatient
+outpatient_hist <- dataset3 %>%
+  ggplot(aes(x = number_outpatient,
+             fill = readmitted)) + 
+  geom_histogram(binwidth = 1)
+outpatient_hist
+
+#number_emergency
+emergency_hist <- dataset3 %>%
+  ggplot(aes(x = number_emergency,
+             fill = readmitted)) + 
+  geom_histogram(binwidth = 1)
+emergency_hist
+
+#number_inpatient
+inpatient_hist <- dataset3 %>%
+  ggplot(aes(x = number_inpatient,
+             fill = readmitted)) + 
+  geom_histogram(binwidth = 1)
+inpatient_hist
+
+#number_diagnoses
+diagnoses_hist <- dataset3 %>%
+  ggplot(aes(x = number_diagnoses,
+             fill = readmitted)) + 
+  geom_histogram(binwidth = 1)
+diagnoses_hist
+```
+* time_in_hospital histogram is positively skewed and shows that more patients that spent 6 or more days in the hospital were readmitted than not.
+* num_lab_procedures histogram appears approximately normal.
+* num_procedures, number_outpatient, number_emergency, and number_inpatient histograms are positively skewed, with greater number of readmitted patients. 
+* num_medications histogram displays slight positive skewness, though the "YES" readmission histogram seems more normal than the overall graph. A greater number of patients with fewer than 20 medications were not readmitted. 
+* number_diagnoses histogram is negatively skewed, showing more patients with a greater number of diagnoses were readmitted.
+
