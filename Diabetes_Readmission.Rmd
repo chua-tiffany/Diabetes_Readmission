@@ -841,3 +841,39 @@ sum(is.na(df.train))
 sum(is.na(df.test))
 ```
 
+## Logistic Regression
+Coding the readmission status as 0 (No) and 1 (YES).
+```{r Binary Readmission 1}
+table(dataset4$readmitted)
+
+df.train1 <- df.train
+table(df.train1$readmitted)
+
+df.test1 <- df.test
+```
+
+```{r Train1 Binary Readmission}
+df.train1$readmitted[df.train1$readmitted == "NO"] = 0
+df.train1$readmitted[df.train1$readmitted == "YES"] = 1
+
+table(df.train1$readmitted)
+
+df.train1$readmitted <- as.numeric(df.train1$readmitted)
+class(df.train1$readmitted)
+```
+
+```{r Test1 Binary Readmission}
+df.test1$readmitted[df.test1$readmitted == "NO"] = 0
+df.test1$readmitted[df.test1$readmitted == "YES"] = 1
+
+df.test1$readmitted <- as.numeric(df.test1$readmitted)
+class(df.test1$readmitted)
+
+table(df.test1$readmitted)
+```
+
+### Logistic Regression Models
+Akaike Information Criterion (AIC) refers to a mathematical method for evaluating how well a model fits the data it was *generated* from. It is used to compare different possible models and determine which is the best fit for the data. A lower AIC score is better.
+
+I will use the AIC scores of each of the following models to determine which features are most significant in determining a patient's readmission status. The model with the lowest AIC score will be used for model prediction against df.test.
+
