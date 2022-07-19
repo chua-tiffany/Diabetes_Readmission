@@ -408,3 +408,36 @@ dataset2 <- select(dataset2, -c("metformin", "repaglinide", "nateglinide", "chlo
 head(dataset2)
 ```
 
+### Patient Personal Information
+```{r race & gender}
+dataset2$race <- as.factor(dataset2$race)
+dataset2$gender <- as.factor(dataset2$gender)
+
+class(dataset2$race)
+class(dataset2$gender)
+
+table(dataset2$race)
+table(dataset2$gender)
+```
+
+The age levels listed are in groups of 10 years. To keep the data balanced, these levels can be consolidated into 2 levels: ages 0-60 as YoungerThan60 and 60-100 as OlderThan60.
+```{r Age}
+table(dataset2$age)
+
+#YoungerThan60 Level
+dataset2$age[dataset2$age == "[10-20)"] = "YoungerThan60"
+dataset2$age[dataset2$age == "[20-30)"] = "YoungerThan60"
+dataset2$age[dataset2$age == "[30-40)"] = "YoungerThan60"
+dataset2$age[dataset2$age == "[40-50)"] = "YoungerThan60"
+dataset2$age[dataset2$age == "[50-60)"] = "YoungerThan60"
+
+#OlderThan60Level
+dataset2$age[dataset2$age == "[60-70)"] = "OlderThan60"
+dataset2$age[dataset2$age == "[70-80)"] = "OlderThan60"
+dataset2$age[dataset2$age == "[80-90)"] = "OlderThan60"
+
+table(dataset2$age)
+
+dataset2$age <- as.factor(dataset2$age)
+```
+
