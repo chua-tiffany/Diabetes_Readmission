@@ -1366,7 +1366,7 @@ As ROC was used to select the optimal model using the largest value, the final v
 
 ***
 
-## Model Results & Analysiss
+## Model Results & Analysis
 
 I compared the Accuracy and Kappa values of each model, provided by the Confusion Matrices, to determine the effectiveness of the models I have built.
 
