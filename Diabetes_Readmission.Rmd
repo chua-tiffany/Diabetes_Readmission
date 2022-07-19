@@ -1048,3 +1048,67 @@ df.train2 <- df.train1
 df.test2 <- df.test1
 ```
 
+### K-NN
+```{r KNN pred}
+# Fitting K-NN to the Training set and Predicting the Test set results
+y_pred = knn(train = df.train2,
+             test = df.test2,
+             df.train2$readmitted,
+             k = 9)
+
+head(y_pred)
+
+misclass.error = mean(df.test2$readmitted != y_pred)
+misclass.error
+
+#Misclass error with K value of 9 = 0.75
+```
+
+#### Choosing a K
+```{r Choosing a K}
+#Choosing a K-value
+y_pred <- NULL
+error.rate <- NULL
+
+for (i in 1:20){
+  set.seed(123)
+  y_pred <- knn(train = df.train2,
+                test = df.test2,
+                df.train2$readmitted,
+                k = i)
+  error.rate[i] <- mean(df.test2$readmitted != y_pred)
+}
+
+error.rate
+
+#Visualize K - Elbow Method
+
+k.values <- 1:20
+error.df <- data.frame(error.rate,
+                       k.values)
+
+ggplot(error.df,
+       aes(k.values,
+           error.rate)) +
+  geom_point() +
+  geom_line(lty = "dotted",
+            color = "red")
+
+#Optimal K value: 6
+```
+
+#### K-NN with Optimal K value
+```{r KNN 2}
+y_pred = knn(train = df.train2,
+             test = df.test2,
+             df.train2$readmitted,
+             k = 6)
+
+head(y_pred)
+
+misclass.error = mean(df.test2$readmitted != y_pred)
+misclass.error
+
+#Misclass error with K value of 6 = 0.733
+```
+
