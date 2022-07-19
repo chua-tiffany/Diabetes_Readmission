@@ -1238,3 +1238,15 @@ result.roc
 plot(result.roc)
 ```
 
+### Decision Trees
+```{r Decision Trees}
+plot(tree,
+     uniform=TRUE,
+     main="Readmission Status")
+text(tree,
+     use.n=TRUE,
+     all=TRUE)
+
+prp(tree)
+```
+
