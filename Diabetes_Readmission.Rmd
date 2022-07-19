@@ -166,3 +166,21 @@ dataset1 <- select(dataset1,
 str(dataset1)
 ```
 
+### Filtering Dataset
+
+Using max_glu_serum and A1Cresult, I will try to filter the dataset to reduce the number of rows based on the variables with relevant information.
+```{r max_glu_serum and A1Cresult}
+table(dataset1$max_glu_serum)
+table(dataset1$A1Cresult)
+```
+
+```{r}
+dataset1 <- dataset1[!dataset1$max_glu_serum == "None", ]
+dataset1 <- dataset1[!dataset1$A1Cresult == "None", ]
+
+nrow(dataset1)
+
+table(dataset1$max_glu_serum)
+table(dataset1$A1Cresult)
+```
+
