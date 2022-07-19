@@ -225,3 +225,29 @@ str(dataset2)
 summary(dataset2)
 ```
 
+### Cleaning
+
+Due to the large number of NA's in the weight column, I will check to see what percentage of rows are missing in this column.
+```{r dataset2$weight}
+#Difference in number of rows and NA variables in dataset2$weight
+nrow(dataset2) - sum(is.na(dataset2$weight))
+
+#Percentage of missing variables in dataset2$weight
+sum(is.na(dataset2$weight)) / nrow(dataset2)
+```
+
+```{r Remove Columns}
+#Because weight is missing 96.86% of the rows, I will remove this column.
+dataset2 <- select(dataset2,
+                   -weight)
+
+#payer_code does not provide much useful information, so I will remove this column.
+dataset2 <- select(dataset2,
+                   -payer_code)
+
+dataset2 <- select(dataset2,
+                   -medical_specialty)
+
+str(dataset2)
+```
+
