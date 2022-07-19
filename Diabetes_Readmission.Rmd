@@ -1000,3 +1000,24 @@ results.class <- as.data.frame(results.class)
 head(results.class)
 ```
 
+### Logistic Regression Confusion Matrix
+```{r Log Confusion Matrix}
+# table(df.test$Outcome,
+#       results.class$pred)
+
+table(df.test1$readmitted,
+      results.class$pred)
+```
+
+```{r Log Confusion Matrix 2}
+df.test1$readmitted <- as.factor(df.test1$readmitted)
+results.class$pred <- as.factor(results.class$pred)
+
+confusionMatrix(df.test1$readmitted,
+                results.class$pred)
+```
+
+Logistic regression confusion matrix results:
+* Accuracy: 0.6
+* Kappa: 0.1955
+
