@@ -1147,3 +1147,42 @@ K-Nearest Neighbor confusion matrix results:
 * Accuracy: 0.6833
 * Kappa: 0.3133
 
+## Support Vector Machines
+Support Vector Machines (SVM) is a supervised machine learning algorithm that can be used for classification.
+
+As the output for the models is a binary factor variable, and SVM is primarily used in classification, it is expected that SVM should work well with the data provided.
+
+### Fitting SVM to the Training Set
+```{r Fitting SVM}
+#Fitting SVM to the Training set
+classifier = svm(formula = readmitted ~ .,
+                 data = df.train2,
+                 kernel = 'linear')
+```
+
+### SVM Predicting the Test Set Results
+```{r}
+# Predicting the Test set results
+svm_pred = predict(classifier,
+                 newdata = df.test2[-1])
+print(svm_pred)
+```
+
+###SVM Confusion Matrix
+```{r SVM cm}
+# Making the Confusion Matrix
+cm = table(df.test2[, 1],
+           y_pred)
+
+cm
+```
+
+```{r SVM cm2}
+confusionMatrix(df.test2$readmitted,
+                y_pred)
+```
+
+SVM confusion matrix results:
+* Accuracy: 0.6833
+* Kappa: 0.3133
+
