@@ -184,3 +184,44 @@ table(dataset1$max_glu_serum)
 table(dataset1$A1Cresult)
 ```
 
+### NA Variables
+
+#### Unknown/Missing Count
+
+```{r Unknown/Missing Count}
+sum(dataset1 == "Unknown/Invalid")
+sum(dataset1$gender == "Unknown/Invalid")
+```
+
+```{r Convert Unknown to NA}
+dataset2 <- dataset1
+# Other Unknown/Missing Variables:
+# $gender == 3
+
+#Turn strange (Unknown/Invalid) values into NA
+dataset2$gender[dataset1$gender == "Unknown/Invalid"] = NA
+  
+sum(is.na(dataset2))
+sapply(dataset2,
+       function(x) sum(is.na(x)))
+```
+
+```{r Missing Map}
+missmap(dataset2)
+
+#NA Count:
+# race: 2273
+# gender: 3
+# weight: 98569
+# payer_code: 40256
+# medical_specialty: 49949
+# diag_1: 21
+# diag_2: 358
+# diag_3: 1423
+```
+
+```{r Post Conversion Read}
+str(dataset2)
+summary(dataset2)
+```
+
