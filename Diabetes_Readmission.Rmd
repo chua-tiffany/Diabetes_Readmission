@@ -970,3 +970,33 @@ summary(logModel4)
 # With an AIC result of 290.23, we can assume that logModel4 is better than logModel1 (AIC = 306.11) but not as good as logModel2 (AIC = 289.43) and logModel3 (AIC = 288.72).
 ```
 
+### Logistic Regression Prediction
+As logModel3 returned the lowest AIC result (AIC = 288.72) of the 4 logistic regression models, I will continue logistic regression prediction with this model.
+```{r Log Predict}
+# Outcome.predictions <- predict(logModel1,
+#                                df.test,
+#                                type = "response")
+# 
+# log.results <- cbind(Outcome.predictions,
+#                      df.test$Outcome)
+# 
+# results.class <- ifelse(log.results > 0.5, 1,0) 
+# colnames(results.class) <- c("pred", "real")
+# results.class <- as.data.frame(results.class)
+# 
+# head(results.class)
+
+readmitted.predictions <- predict(logModel3,
+                                  df.test1,
+                                  type = "response")
+
+log.results <- cbind(readmitted.predictions,
+                     df.test1$readmitted)
+
+results.class <- ifelse(log.results > 0.5, 1, 0)
+colnames(results.class) <- c("pred", "real")
+results.class <- as.data.frame(results.class)
+
+head(results.class)
+```
+
