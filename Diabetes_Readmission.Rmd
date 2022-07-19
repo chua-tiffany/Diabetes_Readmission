@@ -877,3 +877,96 @@ Akaike Information Criterion (AIC) refers to a mathematical method for evaluatin
 
 I will use the AIC scores of each of the following models to determine which features are most significant in determining a patient's readmission status. The model with the lowest AIC score will be used for model prediction against df.test.
 
+#### Log Model 1
+```{r Log Model 1}
+logModel1 <- glm(formula = readmitted ~ . , 
+                 family = binomial,
+                 data = df.train1)
+summary(logModel1)
+
+#Based on logModel1, the significant values are as follows:
+# ** number_inpatient
+# * num_procedures
+# * diag_diab
+# . num_medications
+# . diag_other
+# . discharge_disposition_id.Other
+# . A1Cresult8 
+
+#AIC: 306.11
+```
+
+#### Log Model 2
+With an AIC result of 289.43, we can assume that logModel2 is better than logModel1 (AIC = 306.11).
+```{r Log Model 2}
+logModel2 <- glm(formula = readmitted ~ number_inpatient +
+                   num_procedures + 
+                   diag_diab +
+                   num_medications +
+                   diag_other +
+                   discharge_disposition_id.Other +
+                   A1Cresult8, 
+                 family = binomial,
+                 data = df.train1)
+summary(logModel2)
+
+#Based on logModel2, the significant values are as follows:
+# *** number_inpatient
+# * num_procedures
+# * diag_diab
+# * num_medications
+# * diag_other
+# . discharge_disposition_id.Other
+
+#AIC: 289.43
+# With an AIC result of 289.43, we can assume that logModel2 is better than logModel1 (AIC = 306.11).
+```
+
+#### Log Model 3
+With an AIC result of 288.72, we can assume that logModel3 is better than logModel1 (AIC = 306.11) and logModel2 (AIC = 289.43).
+```{r Log Model 3}
+logModel3 <- glm(formula = readmitted ~ number_inpatient +
+                   num_procedures + 
+                   diag_diab +
+                   num_medications +
+                   diag_other +
+                   discharge_disposition_id.Other, 
+                 family = binomial,
+                 data = df.train1)
+summary(logModel3)
+
+#Based on logModel3, the significant values are as follows:
+# *** number_inpatient
+# * num_procedures
+# * diag_diab
+# * num_medications
+# * diag_other
+# . discharge_disposition_id.Other
+
+#AIC: 288.72
+# With an AIC result of 288.72, we can assume that logModel3 is better than logModel1 (AIC = 306.11) and logModel2 (AIC = 289.43).
+```
+
+#### Log Model 4
+With an AIC result of 290.23, we can assume that logModel4 is better than logModel1 (AIC = 306.11) but not as good as logModel2 (AIC = 289.43) and logModel3 (AIC = 288.72).
+```{r Log Model 4}
+logModel4 <- glm(formula = readmitted ~ number_inpatient +
+                   num_procedures + 
+                   diag_diab +
+                   num_medications +
+                   diag_other, 
+                 family = binomial,
+                 data = df.train1)
+summary(logModel4)
+
+#Based on logModel4, the significant values are as follows:
+# *** number_inpatient
+# * num_procedures
+# * diag_diab
+# * num_medications
+# * diag_other
+
+#AIC: 290.23
+# With an AIC result of 290.23, we can assume that logModel4 is better than logModel1 (AIC = 306.11) but not as good as logModel2 (AIC = 289.43) and logModel3 (AIC = 288.72).
+```
+
