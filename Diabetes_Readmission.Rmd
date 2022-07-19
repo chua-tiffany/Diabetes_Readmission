@@ -356,3 +356,19 @@ dataset2$admission_source_id <- as.factor(dataset2$admission_source_id)
 str(dataset2)
 ```
 
+### Binary Classification
+```{r $readmitted table}
+table(dataset2$readmitted)
+```
+
+```{r Binary Classsification}
+#According to CMS rules, readmission >30 days is considered 'not readmitted', however I will simply classify whether or not the patient was readmitted into the hospital into "YES" and "NO" regardless of number of readmissions. This way, the data will provide more balanced columns for responses.
+dataset2$readmitted[dataset2$readmitted == "<30" | dataset2$readmitted == ">30"]= "YES"
+
+table(dataset2$readmitted)
+```
+
+```{r}
+colnames(dataset2)
+```
+
