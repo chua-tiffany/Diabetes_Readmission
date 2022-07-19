@@ -337,3 +337,22 @@ myData_d$diag_other[(as.character( myData_d$diag_1) == "780") | (as.character( m
 dataset2 <- myData_d
 ```
 
+## Categorical Variables
+```{r Class check}
+# Max glucose level
+# A1C
+# Discharge Disposition ID
+# Admission Type ID
+# Admission Source ID
+
+class(dataset2$discharge_disposition_id)
+class(dataset2$admission_type_id)
+class(dataset2$admission_source_id)
+
+dataset2$discharge_disposition_id <- as.factor(dataset2$discharge_disposition_id)
+dataset2$admission_type_id <- as.factor(dataset2$admission_type_id)
+dataset2$admission_source_id <- as.factor(dataset2$admission_source_id)
+
+str(dataset2)
+```
+
