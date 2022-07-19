@@ -372,3 +372,39 @@ table(dataset2$readmitted)
 colnames(dataset2)
 ```
 
+### Prescriptions
+
+```{r}
+table(dataset2$metformin)
+table(dataset2$repaglinide)
+table(dataset2$nateglinide)
+table(dataset2$chlorpropamide)
+table(dataset2$glimepiride)
+table(dataset2$acetohexamide)
+table(dataset2$glipizide)
+table(dataset2$glyburide)
+table(dataset2$tolbutamide)
+table(dataset2$pioglitazone)
+table(dataset2$rosiglitazone)
+table(dataset2$acarbose)
+table(dataset2$miglitol)
+table(dataset2$troglitazone)
+table(dataset2$tolazamide)
+table(dataset2$examide)
+table(dataset2$citoglipton)
+table(dataset2$insulin)
+
+table(dataset2$glyburide.metformin)
+table(dataset2$glipizide.metformin)
+table(dataset2$glimepiride.pioglitazone)
+table(dataset2$metformin.rosiglitazone)
+table(dataset2$metformin.pioglitazone)
+```
+
+As the following variables present as near-zero variance variables, they are thereby removed from the dataset.
+```{r Filter out prescriptions}
+dataset2 <- select(dataset2, -c("metformin", "repaglinide", "nateglinide", "chlorpropamide", "glimepiride", "acetohexamide", "glipizide", "glyburide", "tolbutamide", "pioglitazone", "rosiglitazone", "acarbose", "miglitol", "troglitazone", "tolazamide", "examide", "citoglipton", "insulin", "glyburide.metformin", "glipizide.metformin", "glimepiride.pioglitazone", "metformin.rosiglitazone", "metformin.pioglitazone", "change"))
+
+head(dataset2)
+```
+
