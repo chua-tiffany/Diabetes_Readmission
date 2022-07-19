@@ -1112,3 +1112,38 @@ misclass.error
 #Misclass error with K value of 6 = 0.733
 ```
 
+### K-NN Confusion Matrix
+```{r KNN Confusion Matrix}
+cm = table(df.test2$readmitted,
+           y_pred)
+cm
+```
+
+```{r}
+df.test2$readmitted[df.test2$readmitted == 1] = "NO"
+df.test2$readmitted[df.test2$readmitted == 2] = "YES"
+
+df.test2$readmitted[df.test2$readmitted == "NO"] = 0
+df.test2$readmitted[df.test2$readmitted == "YES"] = 1
+```
+
+```{r}
+df.test2$readmitted <- as.factor(df.test2$readmitted)
+y_pred <- as.factor(y_pred)
+
+class(df.test2$readmitted)
+class(y_pred)
+
+table(df.test2$readmitted)
+table(y_pred)
+```
+
+```{r KNN Confusion Matrix 2}
+confusionMatrix(df.test2$readmitted,
+                y_pred)
+```
+
+K-Nearest Neighbor confusion matrix results:
+* Accuracy: 0.6833
+* Kappa: 0.3133
+
