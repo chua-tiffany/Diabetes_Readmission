@@ -768,3 +768,47 @@ med_time
 
 ***
 
+# Predictive Models
+
+## Dummy Variables
+```{r dummy}
+d <- predict(dummyVars(~discharge_disposition_id + admission_type_id + max_glu_serum + A1Cresult + admission_source_id,
+                       data = dataset3),
+             newdata = dataset3)
+
+head(d)
+```
+
+```{r Adjust dummy column names}
+colnames(d)
+
+colnames(d)[colnames(d) == "A1Cresult>7"] <- "A1Cresult7"
+colnames(d)[colnames(d) == "A1Cresult>8"] <- "A1Cresult8" 
+colnames(d)[colnames(d) == "max_glu_serum>300"] <- "max_glu_serum.300" 
+colnames(d)[colnames(d) == "max_glu_serum>200"] <- "max_glu_serum.200"
+
+colnames(d)
+```
+
+```{r Column select}
+dataset4 <- select(dataset3, c("readmitted", "time_in_hospital", "num_lab_procedures", "num_procedures", "num_medications", "number_outpatient", "number_emergency", "number_inpatient", "number_diagnoses", "diag_circ", "diag_resp", "diag_dig", "diag_diab", "diag_inj", "diag_musc", "diag_geni", "diag_neop", "diag_other"))
+
+head(dataset4)
+```
+
+```{r add dummy}
+dataset3 <- cbind(dataset4, d)
+
+head(dataset4)
+```
+
+```{r d4 rows & columns}
+nrow(dataset4)
+ncol(dataset4)
+
+dataset4 <- dataset4[ , c("readmitted",
+                          names(dataset4)[names(dataset4) != "readmitted"])]
+
+colnames(dataset4)
+```
+
