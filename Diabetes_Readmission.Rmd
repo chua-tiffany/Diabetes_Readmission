@@ -441,3 +441,20 @@ table(dataset2$age)
 dataset2$age <- as.factor(dataset2$age)
 ```
 
+### Discharge Disposition
+To reduce the number of factors, we can change the "discharge_disposition_id" variable to a categorical variable with 2 factors - Discharged to Home & Other. The discharge disposition IDs that correspond to a home discharge are 1, 6, and 8, while the others correspond to a patient being discharged elsewhere.
+```{r discharge_disposition_id factors}
+discharge.fact <- unique(dataset2$discharge_disposition_id)
+
+discharge.lab <- ifelse(discharge.fact %in% c(1, 6, 8),
+                        "Discharged to Home", "Other")
+
+dataset2$discharge_disposition_id <- factor(dataset2$discharge_disposition_id,
+                                            levels = discharge.fact,
+                                            labels = discharge.lab)
+
+str(dataset2$discharge_disposition_id)
+```
+
+***
+
