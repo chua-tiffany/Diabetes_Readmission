@@ -475,3 +475,26 @@ summary(dataset3)
 str(dataset3)
 ```
 
+## Correlations
+Numeric variable correlations
+```{r Correlations}
+# diab_num <- diab1[1:8]
+# 
+# M <- cor(diab_num,
+#          method = "pearson")
+# M
+# corrplot(M,
+#          method = "square")
+# cor.plot(diab_num)
+
+d_num <- dataset3[, c(7:14, 19:27)]
+
+M <- cor(d_num,
+         method = "pearson")
+round(M, 2)
+
+corrplot(M,
+         method = "square")
+cor.plot(d_num)
+```
+
