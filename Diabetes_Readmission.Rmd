@@ -1366,3 +1366,8 @@ As ROC was used to select the optimal model using the largest value, the final v
 
 ***
 
+## Model Results & Analysiss
+
+I compared the Accuracy and Kappa values of each model, provided by the Confusion Matrices, to determine the effectiveness of the models I have built.
+
+The Logistic Regression model returned the lowest Accuracy and Kappa results (0.6 and 0.1955, respectively). My first XgBoost model returned an Accuracy = 0.6475706 and Kappa = 0.25532683, which shows that it is more effective than the Logistic Regression Model, yet with lower results than other models built. While the Random Forest model with cross validation did not return Accuracy or Kappa values, the ROC of Random Forest (ROC = 0.6717905) is lower than that of my second XgBoost model (ROC = 0.6847143), leading me to believe that the Random Forest Model is not as effective as the second XgBoost model. K-Nearest Neighbor and Support Vector Machine returned similar Accuracy (K-NN = 0.683, SVM = 0.6833) and Kappa (K-NN & SVM = 0.3133) results. As  Decision Tree returned the highest values (Accuracy = 0.7, Kappa = 0.3966), I can assume that this model is the most effective in determining a patient's readmission status based on the features I have utilized in model building.
