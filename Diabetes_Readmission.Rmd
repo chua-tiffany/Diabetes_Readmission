@@ -812,3 +812,32 @@ dataset4 <- dataset4[ , c("readmitted",
 colnames(dataset4)
 ```
 
+## Train & Test Split
+```{r Sample Split}
+set.seed(123)
+split <- sample.split(dataset4$readmitted,
+                      SplitRatio = 0.8)
+df.train <- subset(dataset3,
+                     split == TRUE)
+df.test <- subset(subset(dataset3,
+                           split == FALSE))
+
+nrow(df.test)
+nrow(df.train)
+```
+
+```{r Train Head/Str}
+head(df.train)
+str(df.train)
+```
+
+```{r Rows & Columns}
+nrow(df.train)
+ncol(df.train)
+```
+
+```{r Train/Test NA Check}
+sum(is.na(df.train))
+sum(is.na(df.test))
+```
+
