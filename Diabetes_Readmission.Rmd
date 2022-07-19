@@ -1342,3 +1342,27 @@ In an ROC curve, a higher X-axis value indicates a higher number of False positi
 
 As ROC was used to select the optimal model using the largest value, the final value used for the model was nrounds = 50, max_depth = 1, eta = 0.3, gamma = 0, colsample_bytree = 0.6, min_child_weight = 1, and subsample = 0.75; ROC = 0.6847143.
 
+### Random Forest
+```{r rf train control}
+train_control <- trainControl(method = "cv",
+                              number = 5,
+                              classProbs = TRUE,
+                              summaryFunction=twoClassSummary)
+model <- train(readmitted ~., data = dataset4, 
+               method = "rf",
+               metric="ROC",
+               trControl = train_control)
+```
+
+```{r rf model}
+model
+```
+
+mtry refers to the number of variables randomly sampled as candidates at each split. 
+
+In an ROC curve, a higher X-axis value indicates a higher number of False positives than True negatives, while a higher Y-axis values indicated a higher number of True positives than False negatives. This can be used to determine a desirable cut-off value with a high true positive rate and low false positive rate. 
+
+As ROC was used to select the optimal model using the largest value, the final value used for the model was mtry = 2. Here, ROC = 0.6717905.
+
+***
+
