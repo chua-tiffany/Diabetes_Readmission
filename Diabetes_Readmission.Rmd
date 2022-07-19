@@ -1298,3 +1298,47 @@ fviz_nbclust(df.train2,
   labs(subtitle = "Gap statistic method")
 ```
 
+## Cross Validation
+
+### eXtreme Gradient Boosting (XGBoost)
+#### xgb Model 1
+```{r xgb Train Control 1}
+train_control <-trainControl(method = "cv",
+                            number = 5)
+model <- train(readmitted ~.,
+               data = dataset4,
+               method = "xgbTree",
+               metric = "Accuracy",
+               trControl = train_control)
+```
+
+```{r xgb Model 1}
+model
+```
+
+nrounds refers to the number of decision trees in the final model.
+
+As Accuracy was used to select the optimal model using the largest value, the final value used for the model was nrounds = 50, max_depth = 1, eta = 0.3, gamma = 0, colsample_bytree = 0.6, min_child_weight = 1, and subsample = 0.5; Accuracy = 0.6475706 and Kappa = 0.25532683.
+
+#### xgb Model 2
+```{r xgb Train Control 2}
+train_control <- trainControl(method = "cv",
+                              number = 5,
+                              classProbs = TRUE,
+                              summaryFunction=twoClassSummary)
+model <- train(readmitted ~., data = dataset4, 
+               method = "xgbTree",
+               metric="ROC",
+               trControl = train_control)
+```
+
+```{r xgb Model 2}
+model
+```
+
+nrounds refers to the number of decision trees in the final model.
+
+In an ROC curve, a higher X-axis value indicates a higher number of False positives than True negatives, while a higher Y-axis values indicated a higher number of True positives than False negatives. This can be used to determine a desirable cut-off value with a high true positive rate and low false positive rate. 
+
+As ROC was used to select the optimal model using the largest value, the final value used for the model was nrounds = 50, max_depth = 1, eta = 0.3, gamma = 0, colsample_bytree = 0.6, min_child_weight = 1, and subsample = 0.75; ROC = 0.6847143.
+
