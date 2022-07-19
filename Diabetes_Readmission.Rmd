@@ -1186,3 +1186,55 @@ SVM confusion matrix results:
 * Accuracy: 0.6833
 * Kappa: 0.3133
 
+## Decision Tree
+### Tree
+```{r Tree}
+tree = rpart(formula = readmitted ~ .,
+             method = "class",
+             data = df.train2)
+```
+
+#### Tree Prediction
+```{r Tree Pred}
+#Predicting the Test Set Results
+y_pred = predict(tree,
+                 newdata = df.test2)
+
+head(y_pred)
+```
+
+Converting the results into binary (0, 1)
+```{r Tree Pred Class}
+y_pred_class = ifelse(y_pred[, "0"] >= 0.5,
+                      0, 1)
+```
+
+#### Tree Confusion Matrix
+```{r Tree Confusion Matrix}
+# Making the Confusion Matrix
+cm = table(df.test2$readmitted,
+           y_pred_class)
+
+cm
+```
+
+```{r Tree Confusion Matrix 2}
+y_pred_class <- as.factor(y_pred_class)
+
+confusionMatrix(df.test2$readmitted,
+                y_pred_class)
+```
+
+Tree confusion matrix results:
+* Accuracy: 0.7
+* Kappa: 0.3966
+
+#### Tree ROC
+```{r Tree ROC}
+result.roc = roc(df.test2$readmitted,
+                 y_pred[ ,"0"])
+
+result.roc
+plot(result.roc)
+```
+
