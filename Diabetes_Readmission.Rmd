@@ -519,3 +519,43 @@ ggplot(dataset3,
 ```
 * The readmitted barplot shows that a larger percentage of patients that were not readmitted were discharged to home, while a larger percentage of patients that were readmitted were discharged elsewhere. It is important to note that there are a greater number of patients that were readmitted in this sample.
 
+#### Categorical Barplots
+```{r Race Bar}
+#Base comparison
+ggplot(dataset3,
+       aes(race)) +
+  geom_bar()
+
+#Race & Readmission
+ggplot(dataset3,
+       aes(race)) +
+  geom_bar(aes(fill = factor(readmitted)))
+```
+* The race bar graph shows that a greater number of Caucasians, Asians, Hispanics, and Other were readmitted. Upon looking at the graph, it appears that more African Americans were not readmitted. For the responses where racial information was not available, the graph shows that more patients were not readmitted.
+
+```{r Gender Bar}
+#Base comparison
+ggplot(dataset3,
+       aes(gender)) +
+  geom_bar()
+
+#Gender & Readmission
+ggplot(dataset3,
+       aes(gender)) +
+  geom_bar(aes(fill = factor(readmitted)))
+```
+* The gender bar graph shows that a greater number of female patients were readmitted than male, though it is important to note that there are more female patients in this sample.
+
+```{r Age Bar}
+#Base comparison
+ggplot(dataset3,
+       aes(age)) +
+  geom_bar()
+
+#Race & Readmission
+ggplot(dataset3,
+       aes(age)) +
+  geom_bar(aes(fill = factor(readmitted)))
+```
+* The age bar graph show that more patients older than 60 were readmitted, though it is important to note that there are a greater number of patients older than 60 in the sample.
+
