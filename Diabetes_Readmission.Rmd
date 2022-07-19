@@ -10,5 +10,35 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ```{r Working Directory}
 getwd()
-setwd("/Users/tiffa.chua/Desktop/HS614")
 ```
+
+```{r Libraries}
+library(Amelia)
+library(ggplot2)
+library("GGally")
+library(caTools)
+library(caret)
+library(class)
+library("e1071")
+library(psych)
+library(corrplot)
+library("ISLR")
+library("cluster")
+library(datasets)
+library("factoextra")
+library(dplyr)
+library(rpart)
+library(pROC)
+library("rpart.plot")
+library("randomForest")
+library(pastecs)
+library(tidyr)
+library(Hmisc)
+library(tidyverse)
+library(car)
+library(varImp)
+library(stats)
+library(data.table)
+library(DT)
+```
+
