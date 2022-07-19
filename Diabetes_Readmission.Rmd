@@ -1021,3 +1021,30 @@ Logistic regression confusion matrix results:
 * Accuracy: 0.6
 * Kappa: 0.1955
 
+## K-Nearest Neighbors
+K-Nearest Neighbors (KNN) is a simple, supervised machine learning algorithm that can use used to solve both classification and regression problems. 
+
+As the output for the models is a binary factor variable, and KNN can be implemented for classification, I believe that KNN should work well with the data provided.
+
+```{r}
+table(df.test1$readmitted)
+```
+
+```{r}
+# df.test1$readmitted[df.test1$readmitted == 1] = "NO"
+# df.test1$readmitted[df.test1$readmitted == 2] = "YES"
+# 
+# df.test1$readmitted[df.test1$readmitted == "NO"] = 0
+# df.test1$readmitted[df.test1$readmitted == "YES"] = 1
+
+df.test1$readmitted <- as.numeric(df.test1$readmitted)
+results.class$pred <- as.numeric(results.class$pred)
+
+# table(df.test1$readmitted)
+```
+
+```{r}
+df.train2 <- df.train1
+df.test2 <- df.test1
+```
+
