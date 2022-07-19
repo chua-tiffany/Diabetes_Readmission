@@ -458,3 +458,20 @@ str(dataset2$discharge_disposition_id)
 
 ***
 
+# Exploratory Data Analysis
+
+## Descriptive Statistics
+
+```{r}
+dataset3 <- select(dataset2, -c("diag_1", "diag_2", "diag_3"))
+```
+
+```{r Descriptive Statistics}
+stat.desc(dataset3)
+summary(dataset3)
+```
+
+```{r}
+str(dataset3)
+```
+
