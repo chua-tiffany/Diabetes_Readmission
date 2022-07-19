@@ -638,3 +638,71 @@ diagnoses_hist
 * num_medications histogram displays slight positive skewness, though the "YES" readmission histogram seems more normal than the overall graph. A greater number of patients with fewer than 20 medications were not readmitted. 
 * number_diagnoses histogram is negatively skewed, showing more patients with a greater number of diagnoses were readmitted.
 
+#### Histograms grouped by Discharge Disposition
+```{r Histogram 2}
+# Grouped
+# p <- data %>%
+#   ggplot( aes(x=value, fill=type)) +
+#     geom_histogram( color="#e9ecef", alpha=0.6, position = 'identity') +
+#     scale_fill_manual(values=c("#69b3a2", "#404080")) +
+#     theme_ipsum() +
+#     labs(fill="")
+
+#time_in_hospital
+hosp_hist <- dataset3 %>%
+  ggplot(aes(x = time_in_hospital,
+             fill = discharge_disposition_id)) + 
+  geom_histogram(binwidth = 1)
+hosp_hist
+
+#num_lab_procedures
+lab_p_hist <- dataset3 %>%
+  ggplot(aes(x = num_lab_procedures,
+             fill = discharge_disposition_id)) + 
+  geom_histogram(binwidth = 5)
+lab_p_hist
+
+#num_procedures
+procedures_hist <- dataset3 %>%
+  ggplot(aes(x = num_procedures,
+             fill = discharge_disposition_id)) + 
+  geom_histogram(binwidth = 1)
+procedures_hist
+
+#num_medications
+medications_hist <- dataset3 %>%
+  ggplot(aes(x = num_medications,
+             fill = discharge_disposition_id)) + 
+  geom_histogram(binwidth = 1)
+medications_hist
+
+#number_outpatient
+outpatient_hist <- dataset3 %>%
+  ggplot(aes(x = number_outpatient,
+             fill = discharge_disposition_id)) + 
+  geom_histogram(binwidth = 1)
+outpatient_hist
+
+#number_emergency
+emergency_hist <- dataset3 %>%
+  ggplot(aes(x = number_emergency,
+             fill = discharge_disposition_id)) + 
+  geom_histogram(binwidth = 1)
+emergency_hist
+
+#number_inpatient
+inpatient_hist <- dataset3 %>%
+  ggplot(aes(x = number_inpatient,
+             fill = discharge_disposition_id)) + 
+  geom_histogram(binwidth = 1)
+inpatient_hist
+
+#number_diagnoses
+diagnoses_hist <- dataset3 %>%
+  ggplot(aes(x = number_diagnoses,
+             fill = discharge_disposition_id)) + 
+  geom_histogram(binwidth = 1)
+diagnoses_hist
+```
+* The histograms grouped by discharge disposition show that a large majority of patients were discharged to their homes.
+
